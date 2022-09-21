@@ -14,32 +14,28 @@ with DAG(
     dag_id='our_first_dag_v1',
     default_args=default_args,
     description='This is our first dag that we write',
-    start_date=datetime(2022, 7, 11, 2),
-    schedule_interval='@daily',
+    start_date=datetime(2022, 9, 20),
+    schedule_interval='@once',
     is_paused_upon_creation=True
 ) as dag:
-    task1 = BashOperator(
-        task_id='first_task',
+    A = BashOperator(
+        task_id='A',
         bash_command="airflow variables import /home/airflow/extra/properties.json"
     )
 
-    task2 = BashOperator(
-        task_id='second_task',
+    B = BashOperator(
+        task_id='B',
         bash_command="echo hey, I am task2 and will be running after task1!"
     )
 
-    task3 = BashOperator(
-        task_id='thrid_task',
+    C = BashOperator(
+        task_id='C',
         bash_command="echo hey, I am task3 and will be running after task1 at the same time as task2!"
     )
 
-    # Task dependency method 1
-    # task1.set_downstream(task2)
-    # task1.set_downstream(task3)
+    D = BashOperator(
+        task_id='D',
+        bash_command="echo hey, I am task3 and will be running after task1 at the same time as task2!"
+    )
 
-    # Task dependency method 2
-    # task1 >> task2
-    # task1 >> task3
-
-    # Task dependency method 3
-    task1 >> [task2, task3]
+    A >> [B, C] >> D
