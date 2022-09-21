@@ -14,7 +14,7 @@ with DAG(
     dag_id='our_first_dag_v1',
     default_args=default_args,
     description='This is our first dag that we write',
-    start_date=datetime(2022, 9, 20),
+    start_date=datetime(2022, 9, 19),
     schedule_interval='@once',
     is_paused_upon_creation=True
 ) as dag:
