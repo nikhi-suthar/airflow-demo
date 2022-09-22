@@ -11,11 +11,11 @@ default_args = {
 
 
 with DAG(
-    dag_id='New_Dag',
+    dag_id='New_Dag_2',
     default_args=default_args,
     description='This is our first dag that we write',
     start_date=datetime(2022, 9, 19),
-    schedule_interval='@Daily',
+    schedule_interval='@once',
     is_paused_upon_creation=True
 ) as dag:
     A = BashOperator(
