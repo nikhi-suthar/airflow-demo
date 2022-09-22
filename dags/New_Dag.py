@@ -11,7 +11,7 @@ default_args = {
 
 
 with DAG(
-    dag_id='our_first_dag_v1',
+    dag_id='New_Dag',
     default_args=default_args,
     description='This is our first dag that we write',
     start_date=datetime(2022, 9, 19),
